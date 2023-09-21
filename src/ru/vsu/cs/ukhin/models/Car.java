@@ -52,7 +52,7 @@ public class Car {
             g2d.drawRect(x, y+HEIGHT-frontHeight+headlightsIndent, headlightsWeight, headlightsHeight);
             g2d.setColor(Color.YELLOW);
             g2d.fillRect(x, y+HEIGHT-frontHeight+headlightsIndent, headlightsWeight, headlightsHeight);
-            //back
+            //back  
             g2d.setColor(Color.BLACK);
             g2d.drawRect(x+WEIGHT-headlightsWeight, y+HEIGHT-frontHeight+headlightsIndent, headlightsWeight, headlightsHeight);
             g2d.setColor(Color.RED);
