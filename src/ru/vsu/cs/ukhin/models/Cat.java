@@ -31,6 +31,8 @@ public class Cat {
     private static final int earsWidth = headHeight/2 ;
     private static final int earsHeight = headWidth/2;
     private static final int earsRotate = 60;
+    private static final int mouthWidth = 60;
+    private static final int mouthHeight = 15;
 
     private void drawEar(Graphics2D g2d, int x, int y, int width, int height, int rotate){
         g2d.setStroke(new BasicStroke(20)); //right ear
@@ -46,6 +48,21 @@ public class Cat {
         g2d.rotate(-rotate, x, y); //return to 0
     }
 
+    private void drawMouth(Graphics2D g2d, int x, int y, int strokeWidth){
+        g2d.setStroke(new BasicStroke(strokeWidth));
+        g2d.setColor(Color.BLACK);
+        g2d.drawOval(x-mouthWidth/2, y-mouthHeight*2, mouthWidth/2, mouthHeight*2);
+        g2d.drawOval(x, y-mouthHeight*2, mouthWidth/2, mouthHeight*2);
+        g2d.setColor(color);
+        g2d.fillRect(x-mouthWidth/2-strokeWidth, y-mouthHeight*2-2*strokeWidth, mouthWidth+2*strokeWidth, mouthHeight+2*strokeWidth);
+    }
+
+    private void drawEyes(Graphics2D g2d, int x, int y, int eyesIndent){
+        g2d.setColor(Color.BLACK);
+        g2d.fillOval(x+eyesIndent, y-eyesIndent, 40, 50);
+        g2d.fillOval(x-eyesIndent, y-eyesIndent, 40, 50);
+    }
+
     public void draw(Graphics2D g2d, int x, int y){ //x, y - centre
         //draw ears
         drawEar(g2d, x, y, earsWidth, earsHeight,earsRotate+45); //right
@@ -59,9 +76,10 @@ public class Cat {
         g2d.fillOval(x-headWidth/2, y-headHeight/2, headWidth, headHeight);
 
         //draw eyes
-        g2d.setColor(Color.BLACK);
-        g2d.fillOval(x+eyesIndent, y-eyesIndent, 40, 50);
-        g2d.fillOval(x-eyesIndent, y-eyesIndent, 40, 50);
+        drawEyes(g2d, x, y, eyesIndent);
+
+        //draw mouth
+        drawMouth(g2d, x, y+eyesIndent, 5);
 
     }
 }
