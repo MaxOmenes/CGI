@@ -36,6 +36,9 @@ public class Cat {
     private static final int mouthHeight = 15;
     private static final int eyesWidth = 40;
     private static final int eyesHeight = 50;
+    private static final int bodyWidth = WIDTH;
+    private static final int bodyHeight = HEIHGT - headHeight*3/4;
+
 
 
     private void drawEar(Graphics2D g2d, int x, int y, int width, int height, int rotate){
@@ -90,6 +93,12 @@ public class Cat {
         drawEar(g2d, x, y, earsHeight, earsWidth, earsRotate); //left
 
         g2d.setStroke(new BasicStroke(10));
+
+        //draw body
+        g2d.setColor(strokeColor);
+        g2d.drawOval(x-WIDTH/2, y, bodyWidth, bodyHeight);
+        g2d.setColor(color);
+        g2d.fillOval(x-WIDTH/2, y, bodyWidth, bodyHeight);
 
         //draw head
         g2d.setColor(strokeColor);
