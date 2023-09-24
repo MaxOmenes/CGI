@@ -20,7 +20,7 @@ public class DrawingPanel extends JFrame /*implements ActionListener*/ {
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 //        new Car(Color.BLUE).draw(g2d, ticksFromStart, 300);
-        new Cat(Color.WHITE).draw(g2d, 300, 500);
+        new Cat(Color.WHITE).draw(g2d, 300, 300);
 
     }
     public DrawingPanel(){
