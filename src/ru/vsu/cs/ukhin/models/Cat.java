@@ -22,6 +22,8 @@ public class Cat {
     private static final int eyesIndentVertical = 40;
     private static final int eyesIndentHorisontal = 40;
     private static final int noseIndent = 10;
+    private static final int pawIndent = 20;
+
 
 
 
@@ -40,11 +42,13 @@ public class Cat {
     private static final int bodyHeight = HEIHGT - headHeight*3/4;
     private static final int mustacheIndentHorizontal = 100;
     private static final int mustacheIndentVertical = 8;
-
     private static final int feetWidth = 110;
     private static final int feetHeight = 130;
     private static final int padSize = 26;
     private static final int bigPadSize = 70;
+    private static final int pawWidth = 100;
+    private static final int pawHeight = 50;
+
 
 
     private void drawEar(Graphics2D g2d, int x, int y, int width, int height, int rotate){
@@ -129,6 +133,24 @@ public class Cat {
         drawFoot(g2d, x+WIDTH/10, y+bodyHeight-feetHeight+15);//right
     }
 
+    private void drawPaw(Graphics2D g2d, int x, int y){
+        g2d.setStroke(new BasicStroke(10));
+        g2d.setColor(strokeColor);
+        g2d.drawOval(x, y, pawWidth, pawHeight);
+        g2d.setColor(color);
+        g2d.fillOval(x, y, pawWidth, pawHeight);
+        g2d.setStroke(new BasicStroke(5));
+        g2d.setColor(strokeColor);
+        g2d.drawLine(x+pawWidth/2, y+30, x+pawWidth/2, y+pawHeight);
+        g2d.drawLine(x+pawWidth/2+pawIndent, y+30, x+pawWidth/2+pawIndent, y+pawHeight);
+        g2d.drawLine(x+pawWidth/2-pawIndent, y+30, x+pawWidth/2-pawIndent, y+pawHeight);
+    }
+    private void drawPaws(Graphics2D g2d, int x, int y){
+        drawPaw(g2d, x-bodyWidth/2-pawWidth/2, y+bodyHeight/3);
+        drawPaw(g2d, x+bodyWidth/2-pawWidth/2, y+bodyHeight/3);
+        g2d.setStroke(new BasicStroke(10));
+    }
+
     public void draw(Graphics2D g2d, int x, int y){ //x, y - centre
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -145,6 +167,8 @@ public class Cat {
         g2d.fillOval(x-WIDTH/2, y, bodyWidth, bodyHeight);
 
         drawFeet(g2d, x, y);
+
+        drawPaws(g2d, x, y);
 
         //draw head
         g2d.setColor(strokeColor);
