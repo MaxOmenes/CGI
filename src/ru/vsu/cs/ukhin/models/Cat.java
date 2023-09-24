@@ -38,7 +38,13 @@ public class Cat {
     private static final int eyesHeight = 50;
     private static final int bodyWidth = WIDTH;
     private static final int bodyHeight = HEIHGT - headHeight*3/4;
+    private static final int mustacheIndentHorizontal = 100;
+    private static final int mustacheIndentVertical = 8;
 
+    private static final int feetWidth = 110;
+    private static final int feetHeight = 130;
+    private static final int padSize = 26;
+    private static final int bigPadSize = 70;
 
 
     private void drawEar(Graphics2D g2d, int x, int y, int width, int height, int rotate){
@@ -82,7 +88,45 @@ public class Cat {
     private void drawEyes(Graphics2D g2d, int x, int y, int eyesIndentVertical, int eyesIndentHorisontal){
         drawEye(g2d, x+eyesIndentHorisontal, y-eyesIndentVertical);
         drawEye(g2d, x-eyesWidth-eyesIndentHorisontal, y-eyesIndentVertical);
+    }
 
+    private void drawMoustage(Graphics2D g2d, int x, int y, int mustacheIndentVertical, int mustacheIndentHorizontal){
+        int deltaV = 30+mustacheIndentVertical;
+        int deltaX = 60+mustacheIndentHorizontal;
+        int mainDeltaX = 80+mustacheIndentHorizontal;
+
+        g2d.setColor(strokeColor);
+        g2d.setStroke(new BasicStroke(2));
+
+        //left side
+        g2d.drawLine(x-mustacheIndentHorizontal, y, x-mainDeltaX, y);
+        g2d.drawLine(x-mustacheIndentHorizontal, y+mustacheIndentVertical, x-deltaX, y+deltaV);
+        g2d.drawLine(x-mustacheIndentHorizontal, y-mustacheIndentVertical, x-deltaX, y-deltaV);
+
+        //right side
+        g2d.drawLine(x+mustacheIndentHorizontal, y, x+mainDeltaX, y);
+        g2d.drawLine(x+mustacheIndentHorizontal, y+mustacheIndentVertical, x+deltaX, y+deltaV);
+        g2d.drawLine(x+mustacheIndentHorizontal, y-mustacheIndentVertical, x+deltaX, y-deltaV);
+    }
+
+    private void drawFoot(Graphics2D g2d, int x, int y){
+        g2d.setColor(strokeColor);
+        g2d.drawOval(x, y, feetWidth, feetHeight);
+        g2d.setColor(color);
+        g2d.fillOval(x, y, feetWidth, feetHeight);
+
+        //draw pad
+        g2d.setColor(earsColor);
+        g2d.fillOval(x+feetWidth/2-padSize/2, y+15, padSize, padSize);
+        g2d.fillOval(x+feetWidth/4-padSize/2, y+25, padSize, padSize);
+        g2d.fillOval(x+feetWidth*3/4-padSize/2, y+25, padSize, padSize);
+
+        //draw big pad
+        g2d.fillOval(x+feetWidth/2-bigPadSize/2, y+50, bigPadSize, bigPadSize);
+    }
+    private void drawFeet(Graphics2D g2d, int x, int y){
+        drawFoot(g2d,x-WIDTH/10-feetWidth, y+bodyHeight-feetHeight+15);//left
+        drawFoot(g2d, x+WIDTH/10, y+bodyHeight-feetHeight+15);//right
     }
 
     public void draw(Graphics2D g2d, int x, int y){ //x, y - centre
@@ -100,6 +144,8 @@ public class Cat {
         g2d.setColor(color);
         g2d.fillOval(x-WIDTH/2, y, bodyWidth, bodyHeight);
 
+        drawFeet(g2d, x, y);
+
         //draw head
         g2d.setColor(strokeColor);
         g2d.drawOval(x-headWidth/2, y-headHeight/2, headWidth, headHeight);
@@ -112,7 +158,6 @@ public class Cat {
 
         drawNose(g2d, x, y, eyesIndentVertical, true);
 
-
-
+        drawMoustage(g2d, x, y, mustacheIndentVertical, mustacheIndentHorizontal);
     }
 }
