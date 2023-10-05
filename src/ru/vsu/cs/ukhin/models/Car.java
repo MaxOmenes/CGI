@@ -1,8 +1,10 @@
 package ru.vsu.cs.ukhin.models;
 
+import ru.vsu.cs.ukhin.Interface.Drawable;
+
 import java.awt.*;
 
-public class Car {
+public class Car implements Drawable {
     final private int HEIGHT = 200;
     final private int WEIGHT = 600;
     Color carColor;

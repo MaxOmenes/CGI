@@ -1,8 +1,10 @@
 package ru.vsu.cs.ukhin.models;
 
+import ru.vsu.cs.ukhin.Interface.Drawable;
+
 import java.awt.*;
 
-public class Cat {
+public class Cat implements Drawable {
     private Color color;
 
     public Cat(Color color){
